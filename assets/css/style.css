@@ -1,0 +1,108 @@
+body{
+	margin:0;
+	font-family:Helvetica;
+}
+a{
+	color: white;
+	text-decoration:none;
+}
+a:hover{
+	color:yellow;
+}
+.textAlignCenter{
+	text-align:center;
+}
+.textAlignLeft{
+	text-align:left;
+}
+.textAlignRight{
+	text-align:right;
+}
+.inlineBlock{
+	display:inline-block;
+}
+.floatLeft{
+	float:left;
+}
+.floatRight{
+	float:right;
+}
+.container{
+	width:90%;
+	margin:0 auto;
+}
+.cabecalho{
+	width:100%;
+	color:white;
+	background-color: #f90;
+	padding: 10px 0px;
+}
+.rodape{
+	width: 100%;
+	background-color: #7A5229;
+	color: white;
+	padding: 10px 0px;
+	margin-top: 30px;
+}
+.cabecalho .titulo{
+	font-size:48px;
+	display:inline-block;
+}
+.corpo .container a{
+	color:#f90;
+	text-decoration:none;
+}
+.corpo .container a:hover{
+	color:#7A5229;
+}
+.corpo .titulo{
+	font-size:30px;
+}
+.subtitulo{
+	font-size:28px;
+}
+.formulario{
+	line-height: 20px;
+	display:block;
+	margin: 0 auto;
+}
+.submit{
+	margin-top:8px;
+}
+.logout{
+	padding-top: 24px;
+}
+.botao{
+	display:inline-block;
+	background-color:#f90;
+	margin:30px 3%;
+	text-align:center;
+	border-radius: 5px;
+	font-size:35px;
+}
+.botao:hover{
+	background-color:#7A5229;
+}
+.botao a{
+	color:white!important;
+	width:100%;
+	height:100%;
+	display: inline-flex;
+    padding: 6px 20px;
+    text-align: center;
+}
+.botao a:hover{
+	color:#f90!important;
+}
+.calendario{
+	border:1px solid black;
+}
+.calendario tr td{
+	border: 1px solid black;
+}
+.data-selecionada{
+	background-color: #f90;
+}
+.aviso .corpo-do-aviso{
+	border-bottom:solid 1px gray;
+}
