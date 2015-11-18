@@ -22,11 +22,12 @@
 					<li>Rodrigo De P. Gomes - 6431197</li>
 				</ul>
 				<br>
-				Essa é a primeira versão do sistema. O que já foi feito:
+				Essa versão mais atual do sistema. O que já foi feito:
 				<ul>
 					<li>Criamos um banco de dados para o sistema;</li>
 					<li>Começamos a montar a interface gráfica do sistema;</li>
 					<li>Criamos um sistema de login, cujo conteúdo difere entre usuários que são pais de alunos (responsáveis) e professores;</li>
+					<li>Tornamos o sistema responsivo;</li>
 					<li>Entre outras coisas citadas na apresentação do dia 15/10/2015</li>
 				</ul>
 				<br>
@@ -46,7 +47,6 @@
 					<li>Conectar o sistema com o banco de dados citado na lista acima;</li>
 					<li>Fazer sistema de cadastro de alunos em turmas;</li>
 					<li>Permitir que os professores atribuam notas e presença somente a alunos de turmas em que ele dá aula;</li>
-					<li>Tornar o sistema responsivo, isto é, ajustável a diferentes tamanhos de telas;</li>
 				</ul>
 			</div>
 		</section>
