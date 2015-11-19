@@ -18,7 +18,6 @@
 				<ul>
 					<li>Thiago de Aguiar Gomes - 5715160</li>
 					<li>Pedro Toupitzen - 8082640</li>
-					<li>Vinicius Carvalho - 7557442</li>
 					<li>Rodrigo De P. Gomes - 6431197</li>
 				</ul>
 				<br>
