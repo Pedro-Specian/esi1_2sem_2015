@@ -1,5 +1,5 @@
 <?php
-class cadastro_supTeste extends PHPUnit_Framework_TestCase
+class CadastroSupTeste extends PHPUnit_Framework_TestCase
 {
     public function testCPFValido(){
         $cadastro = efetuaLogin("12345678911","senha","professor");

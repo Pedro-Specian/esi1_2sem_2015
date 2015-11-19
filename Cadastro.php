@@ -12,7 +12,7 @@
 			<div class="container">
 				<p class="titulo">Cadastro</p>
 				<div class="form">
-					<form method="POST" action="cadastro_sup.php" class="formulario">
+					<form method="POST" action="CadastroSup.php" class="formulario">
 						<label>Login</label>
 						<br>
 						<input type="text" name="login" id="login">

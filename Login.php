@@ -12,7 +12,7 @@
 			<div class="container">
 				<p class="titulo">Login</p>
 				<div class="form">
-					<form name="login" class="formulario" method="POST" action="login_sup.php">
+					<form name="login" class="formulario" method="POST" action="LoginSup.php">
 						<label for="usuario">CPF/RM:</label>
 						<br>
 						<input type="text" name="usuario" class="campo"/>

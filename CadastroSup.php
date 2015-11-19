@@ -9,7 +9,7 @@
         if(isset($par_tipo) && $par_tipo=='professor'){
                 $tipo = 1;
         }
-        $connect = mysqli_connect('us-west-2.console.aws.amazon.com:1433','EngSoft','Soft1234','newschool');
+        $connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
         $db = mysqli_select_db($connect,'nome_do_banco_de_dados');
         $query_select = "SELECT login FROM usuarios WHERE login = '$login'";
         $select = mysqli_query($connect,$query_select);

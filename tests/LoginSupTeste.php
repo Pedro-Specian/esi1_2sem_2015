@@ -1,5 +1,5 @@
 <?php
-class login_supTeste extends PHPUnit_Framework_TestCase
+class LoginSupTeste extends PHPUnit_Framework_TestCase
 {
     public function testCamposVazios(){
         $login = efetuaLogin("","");
