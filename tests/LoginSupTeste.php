@@ -1,24 +1,26 @@
 <?php
-class LoginSupTeste extends PHPUnit_Framework_TestCase
-{
+
+include "LoginSup.php";
+
+class LoginSupTeste extends PHPUnit_Framework_TestCase{
     public function testCamposVazios(){
-        $login = efetuaLogin("","");
+        $login = efetuaLogin("","","Login");
         $this->assertEquals(false, $login);
     }
     public function testSenhaCorreta(){
-        $login = efetuaLogin("teste","teste");
+        $login = efetuaLogin("teste","teste","Login");
         $this->assertEquals(true, $login);
     }
     public function testLoginVazio(){
-        $login = efetuaLogin("","teste");
+        $login = efetuaLogin("","teste","Login");
         $this->assertEquals(true, $login);
     }
     public function testSenhaVazia(){
-        $login = efetuaLogin("teste","");
+        $login = efetuaLogin("teste","","Login");
         $this->assertEquals(true, $login);
     }
     public function testSenhaIncorreta(){
-        $login = efetuaLogin("teste","aaaa");
+        $login = efetuaLogin("teste","aaaa","Login");
         $this->assertEquals(true, $login);
     }
 }

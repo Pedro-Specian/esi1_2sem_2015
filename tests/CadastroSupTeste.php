@@ -3,35 +3,35 @@ class CadastroSupTeste extends PHPUnit_Framework_TestCase
 {
     public function testCPFValido(){
         $cadastro = efetuaLogin("12345678911","senha","professor");
-        $this->assertEquals(true, $cadastro);
+        $this->assertEquals(1, $cadastro);
     }
     public function testCPFInvalido(){
         $cadastro = efetuaLogin("189","senha","professor");
-        $this->assertEquals(true, $cadastro);
+        $this->assertEquals(1, $cadastro);
     }
     public function testCPFVazio(){
         $cadastro = efetuaLogin("","senha","professor");
-        $this->assertEquals(false, $cadastro);
+        $this->assertEquals(0, $cadastro);
     }
     public function testTipo1(){
-        $cadastro = efetuaLogin("12345678911","senha","professor");
-        $this->assertEquals(true, $cadastro);
+        $login = efetuaLogin("12345678911","senha","professor");
+        $this->assertEquals(1, $cadastro);
     }
     public function testTipo2(){
-        $cadastro = efetuaLogin("12345678911","senha","responsavel");
-        $this->assertEquals(true, $cadastro);
+        $login = efetuaLogin("12345678911","senha","responsavel");
+        $this->assertEquals(1, $cadastro);
     }
     public function testTipoVazio(){
-        $cadastro = efetuaLogin("12345678911","senha","");
-        $this->assertEquals(false, $cadastro);
+        $login = efetuaLogin("12345678911","senha","");
+        $this->assertEquals(0, $cadastro);
     }
     public function testSenhaValida(){
-        $cadastro = efetuaLogin("12345678911","senha","professor");
-        $this->assertEquals(false, $cadastro);
+        $login = efetuaLogin("12345678911","senha","professor");
+        $this->assertEquals(0, $cadastro);
     }
     public function testSenhaVazia(){
-        $cadastro = efetuaLogin("12345678911","","professor");
-        $this->assertEquals(false, $cadastro);
+        $login = efetuaLogin("12345678911","","professor");
+        $this->assertEquals(0, $cadastro);
     }
 }
 ?>
