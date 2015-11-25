@@ -25,7 +25,7 @@
 			            	}
 			            	$connect = mysqli_connect('localhost','root','','esi1');
         					$db = mysqli_select_db($connect,'esi1');
-			            	$query_select = "SELECT * FROM avisos WHERE escopo='".$tipodeusuario."' OR escopo='todos';";
+			            	$query_select = "SELECT * FROM avisos WHERE escopo='".$tipodeusuario."' OR escopo='todos' ORDER BY data DESC;";
 					        $select = mysqli_query($connect,$query_select);
 					        while ($row = mysqli_fetch_row($select)) {
 			            ?>
