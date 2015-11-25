@@ -33,18 +33,15 @@
 				O que falta fazer:
 				<ul>
 					<li>Adicionar funcionalidades às telas;</li>
-					<li>Completar as telas de avisos, frequência e notas, implementando:
+					<li>Completar as telas de frequência e notas, implementando:
 						<ul>
-							<li>Sistema de envio e recebimento de avisos;</li>
 							<li>Atribuição dinâmica de notas e frequências aos alunos nas suas respectivas telas;</li>
 							<li>Cálculo dinâmico de presença e notas de cada aluno;</li>
 							<li>Página com quadro de avaliação de cada aluno (Aprovado, Reprovado etc.);</li>
-							<li>Associação entre cada aluno e seu respectivo responsável;</li>
 							<li>Etc.</li>
 						</ul>
 					</li>
 					<li>Conectar o sistema com o banco de dados citado na lista acima;</li>
-					<li>Fazer sistema de cadastro de alunos em turmas;</li>
 					<li>Permitir que os professores atribuam notas e presença somente a alunos de turmas em que ele dá aula;</li>
 				</ul>
 			</div>
