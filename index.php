@@ -11,7 +11,7 @@
 		<?php include("header.php"); ?>
 		<section class="corpo">
 			<div class="container">
-				<?php
+				<?php 
 					if(isset($_SESSION['usuario'])){
 						$login_session= $_SESSION['usuario'];
 					}

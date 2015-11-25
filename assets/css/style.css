@@ -111,3 +111,6 @@ a:hover{
 	font-weight:600;
 	padding:0;
 }
+.tabela-notas, .tabela-notas tr, .tabela-notas td{
+	border:solid 1px black;
+}

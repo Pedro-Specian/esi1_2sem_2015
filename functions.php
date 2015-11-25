@@ -86,4 +86,57 @@
             }
         }
     }
+    function cadastrarAlunoEmSerie($par_idserie, $par_idaluno){
+        $id_serie = $par_idserie;
+        $id_aluno = $par_idaluno;
+        //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
+        $query = "UPDATE alunos SET ID_Serie=".$id_serie." WHERE ID_Aluno=".$id_aluno.";";
+        $update = mysqli_query($connect,$query);
+        //echo mysqli_error($connect);                 
+        if($update){
+            echo"<script language='javascript' type='text/javascript'>alert('O aluno foi cadastrado com sucesso!');window.location.href='Turmas.php'</script>";
+            return 1;
+        }else{            
+            echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse aluno.');window.location.href='Turmas.php'</script>";
+            return 0;
+        }
+    }
+    function cadastrarAlunoEmTurma($par_idturma, $par_idaluno){
+        $id_turma = $par_idturma;
+        $id_aluno = $par_idaluno;
+        //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
+        $query = "INSERT INTO matricula (ID_Turma, ID_Aluno) VALUES (".$id_turma.", ".$id_aluno.");";
+        $insert = mysqli_query($connect,$query);
+        //echo mysqli_error($connect);                 
+        if($insert){
+            echo"<script language='javascript' type='text/javascript'>alert('O aluno foi cadastrado com sucesso!');window.location.href='Turmas.php'</script>";
+            return 1;
+        }else{            
+            echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse aluno.');window.location.href='Turmas.php'</script>";
+            return 0;
+        }
+    }
+    function cadastrarNovaTurma($par_id, $par_nome, $par_serie, $par_materia){
+        $id_professor = $par_id;
+        $nome = $par_nome;
+        $id_serie = $par_serie;
+        $id_materia = $par_materia;
+        //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
+        $query = "INSERT INTO turmas (ID_Professor, ID_Materia, ID_Serie, nome) VALUES (".$id_professor.", ".$id_materia.", ".$id_serie.", '".$nome."');";
+        $insert = mysqli_query($connect,$query);
+        //echo mysqli_error($connect);                 
+        if($insert){
+            echo"<script language='javascript' type='text/javascript'>alert('Turma cadastrada com sucesso!');window.location.href='Turmas.php'</script>";
+            return 1;
+        }else{            
+            echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar essa turma.');window.location.href='Turmas.php'</script>";
+            return 0;
+        }
+    }
 ?>
