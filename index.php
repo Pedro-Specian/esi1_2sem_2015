@@ -24,8 +24,13 @@
 				            <div class="botao"><a href="Aviso.php">Avisos</a></div>
 				            <div class="botao"><a href="Notas.php">Notas</a></div>
 				            <div class="botao"><a href="Frequencia.php">Frequencia</a></div>
-			            </div>		            
-			        <?php
+			            </div>
+				    <?php
+						if($_SESSION['tipo']==1){ ?>
+							<div class="textAlignCenter">
+					            <div class="botao"><a href="Turmas.php">Gerenciar Turmas</a></div>
+				            </div>
+					<?php }
 			        }else{ ?>
 			        	<p class="titulo">Bem-Vindo</p> 
 			            Bem-Vindo ao Newschool System. 

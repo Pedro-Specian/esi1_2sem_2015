@@ -3,20 +3,26 @@
         $usuario = $par_login;
         $entrar = $par_submit;
         $senha = md5($par_senha);
-        $connect = mysqli_connect('localhost','root','','usuarios');
-        $db = mysqli_select_db($connect,'usuarios');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
         if (isset($entrar)) {
-            $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE login = '$usuario' AND senha = '$senha'") or die("erro ao selecionar");
+            $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE login = '".$usuario."' AND senha = '".$senha."'") or die("erro ao selecionar");
             if (mysqli_num_rows($verifica)<=0){
                 echo "<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='Login.php';</script>";
                 die();
                 return 0;
             }else{                           
                 session_start();
+                while ($row = mysqli_fetch_row($verifica)) {
+                    $_SESSION['id'] = $row[0];
+                    $_SESSION['tipo'] = $row[4];
+                }
                 $_SESSION['usuario'] = $usuario;
-                $_SESSION['tipo'] = mysqli_fetch_row($verifica)[3];
-                /*echo $_SESSION['usuario'];
-                echo $_SESSION['tipo'];*/
+                //$_SESSION['id'] = mysqli_fetch_row($verifica)[0];
+                //$_SESSION['tipo'] = mysqli_fetch_row($verifica)[3];
+                //echo $_SESSION['usuario'];
+                //echo $_SESSION['tipo'];
+                //echo $_SESSION['id'];
                 header("Location:index.php");
                 return 1;            
             }
@@ -30,8 +36,8 @@
                 $tipo = 1;
         }
         //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
-        $connect = mysqli_connect('localhost','root','','usuarios');
-        $db = mysqli_select_db($connect,'nome_do_banco_de_dados');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
         $query_select = "SELECT login FROM usuarios WHERE login = '$login'";
         $select = mysqli_query($connect,$query_select);
         $array = mysqli_fetch_array($select);
@@ -45,7 +51,7 @@
                 die(); 
                 return 0;
             }else{
-                $query = "INSERT INTO usuarios (login,senha,professor) VALUES ('$login','$senha','$tipo')";
+                $query = "INSERT INTO usuarios (login,senha,professor) VALUES ('".$login."','".$senha."',".$tipo.");";
                 $insert = mysqli_query($connect,$query);                 
                 if($insert){
                     echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='Login.php'</script>";
@@ -54,6 +60,29 @@
                     echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse usuário');window.location.href='Cadastro.php'</script>";
                     return 0;
                 }
+            }
+        }
+    }
+    function enviaMensagem($par_destinatario, $par_titulo, $par_mensagem, $par_id){
+        $dest=$par_destinatario;
+        $titulo=$par_titulo;
+        $mensagem=$par_mensagem;
+        $idprofessor=$par_id;
+
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
+        if($titulo == "" || $titulo == null || $mensagem=="" || $mensagem== null || $dest=="" || $dest== null ){
+            echo"<script language='javascript' type='text/javascript'>alert('Os campos devem ser preenchidos');window.location.href='Aviso.php';</script>";
+        }else{
+            $date = date('Y-m-d H:i:s');
+            $query = "INSERT INTO avisos (ID_Professor,titulo,data,texto,escopo) VALUES (".$idprofessor.",'".$titulo."','".$date."','".$mensagem."','".$dest."');";
+            $insert = mysqli_query($connect,$query);                 
+            if($insert){
+                echo"<script language='javascript' type='text/javascript'>window.location.href='Aviso.php';</script>";
+                return 1;
+            }else{
+                echo"<script language='javascript' type='text/javascript'>alert('Não foi possível enviar a mensagem.');window.location.href='Aviso.php'</script>";
+                return 0;
             }
         }
     }
