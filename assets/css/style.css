@@ -114,3 +114,7 @@ a:hover{
 .tabela-notas, .tabela-notas tr, .tabela-notas td{
 	border:solid 1px black;
 }
+.campo-nota{
+	display:block;
+	width:100%;
+}

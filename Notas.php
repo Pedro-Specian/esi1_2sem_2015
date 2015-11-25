@@ -40,6 +40,22 @@
 									}
 									echo "<br>";
 									echo "<table class='tabela-notas'>";
+									echo "<tr>";
+									echo "<td>Aluno</td>";
+									$query_select_tip = "SELECT * FROM tipo_atividades;";
+									$select_tip = mysqli_query($connect,$query_select_tip);
+									$cont=1;									
+									while($r=mysqli_fetch_row($select_tip)){
+										$tipo[$cont]=$r[1];
+										$cont++;
+									}
+									$query_select_ativ = "SELECT * FROM atividades WHERE ID_Turma=".$row_turma[0]." ORDER BY ID_Atividade;";
+									$select_ativ = mysqli_query($connect,$query_select_ativ);								
+									while($row_ativ=mysqli_fetch_row($select_ativ)){
+										$nomeTipo=$tipo[($row_ativ[5])];
+										echo "<td>".$row_ativ[2]." (".$nomeTipo.")</td>";
+									}
+									echo "</td>";
 									$query_select_matriculas = "SELECT * FROM matricula WHERE ID_Turma=".$row_turma[0].";";
 									$select_matriculas = mysqli_query($connect,$query_select_matriculas);
 									while ($row_matriculas = mysqli_fetch_row($select_matriculas)) {
@@ -50,6 +66,22 @@
 											echo "<td>";
 											echo $row_alunos[3]." ".$row_alunos[4];
 											echo "</td>";
+											$query_select_ativ = "SELECT * FROM atividades WHERE ID_Turma=".$row_turma[0]." ORDER BY ID_Atividade;";
+											$select_ativ = mysqli_query($connect,$query_select_ativ);
+											//echo mysqli_error($connect);								
+											while($row_ativ=mysqli_fetch_row($select_ativ)){
+												$query_nota = "SELECT Valor FROM notas WHERE ID_Atividade=".$row_ativ[0]." AND ID_Aluno=".$row_alunos[0].";";
+												$select_nota = mysqli_query($connect,$query_nota);
+												$nota = mysqli_fetch_array($select_nota);
+												echo "<td>";
+												echo "<form action='AlteraNotaSup.php' method='POST'>";
+												echo "<input class='campo-nota' name='nota' type='number' min='0' max='10' value='".($nota['valor']+0)."' step='0.1'/>";
+												echo "<input type='hidden' name='id_atividade' value='".$row_ativ[1]."'>";
+												echo "<input type='hidden' name='id_aluno' value='".$row_alunos[0]."'>";
+												echo "<input type='submit' name='submit' class='submit' value='Mudar' />";
+												echo "</form>";
+												echo "</td>";
+											}
 											echo "</tr>";
 										}
 									}
