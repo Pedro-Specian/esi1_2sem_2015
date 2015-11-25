@@ -139,4 +139,29 @@
             return 0;
         }
     }
+    function cadastrarNovaAtividade($nom, $tip, $desc, $dat, $id_turma){
+        $nome=$nom;
+        $tipo=$tip;
+        $descricao=$desc;
+        $data=date_create($dat);
+        $id=$id_turma;
+        if($nom == "" || $nom == null || $nom == " " || $data==""|| $data== null || $data == " "){
+            echo"<script language='javascript' type='text/javascript'>alert('Os campos nome e data devem ser preenchidos');window.location.href='Atividades.php';</script>";
+        }else{
+        //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
+            $connect = mysqli_connect('localhost','root','','esi1');
+            $db = mysqli_select_db($connect,'esi1');
+            //$data->format('Y-m-d');
+            $query = "INSERT INTO atividades (ID_Turma, ID_Tipo, nome, descricao, data) VALUES (".$id.", ".$tipo.", '".$nome."', '".$descricao."', '".date_format($data, 'Y-m-d')."');";
+            $insert = mysqli_query($connect,$query);
+            echo mysqli_error($connect);                 
+            if($insert){
+                echo"<script language='javascript' type='text/javascript'>alert('Atividade cadastrada com sucesso!');window.location.href='Atividades.php'</script>";
+                return 1;
+            }else{            
+                echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar essa atividade.');window.location.href='Atividades.php'</script>";
+                return 0;
+            }
+        }
+    }
 ?>

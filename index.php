@@ -28,7 +28,8 @@
 				    <?php
 						if($_SESSION['tipo']==1){ ?>
 							<div class="textAlignCenter">
-					            <div class="botao"><a href="Turmas.php">Gerenciar Turmas</a></div>
+					            <div class="botao"><a href="Turmas.php">Turmas</a></div>
+					            <div class="botao"><a href="Atividades.php">Atividades</a></div>
 				            </div>
 					<?php }
 			        }else{ ?>
