@@ -26,6 +26,7 @@
 					<li>Criamos um banco de dados para o sistema;</li>
 					<li>Começamos a montar a interface gráfica do sistema;</li>
 					<li>Criamos um sistema de login, cujo conteúdo difere entre usuários que são pais de alunos (responsáveis) e professores;</li>
+					<li>Criamos os sistemas de avisos e notas</li>
 					<li>Tornamos o sistema responsivo;</li>
 					<li>Entre outras coisas citadas na apresentação do dia 15/10/2015</li>
 				</ul>
@@ -35,8 +36,8 @@
 					<li>Adicionar funcionalidades às telas;</li>
 					<li>Completar as telas de frequência e notas, implementando:
 						<ul>
-							<li>Atribuição dinâmica de notas e frequências aos alunos nas suas respectivas telas;</li>
-							<li>Cálculo dinâmico de presença e notas de cada aluno;</li>
+							<li>Atribuição dinâmica de frequências aos alunos nas suas respectivas telas;</li>
+							<li>Cálculo dinâmico de presença de cada aluno;</li>
 							<li>Página com quadro de avaliação de cada aluno (Aprovado, Reprovado etc.);</li>
 							<li>Etc.</li>
 						</ul>

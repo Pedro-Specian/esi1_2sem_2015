@@ -164,38 +164,37 @@
             }
         }
     }
-    function efetuaCadastro($par_login,$par_senha,$par_tipo){
-        $login = $par_login;
-        $senha = MD5($par_senha);
-        $tipo = 0;
-        if(isset($par_tipo) && $par_tipo=='professor'){
-                $tipo = 1;
-        }
+    function alterarNota($id_at,$id_al,$not){
+        $id_atividade = $id_at;
+        $id_aluno = $id_al;
+        $nota = $not;
         //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
         $connect = mysqli_connect('localhost','root','','esi1');
         $db = mysqli_select_db($connect,'esi1');
-        $query_select = "SELECT login FROM usuarios WHERE login = '$login'";
+        $query_select = "SELECT * FROM notas WHERE ID_Atividade = ".$id_atividade." AND ID_Aluno=".$id_aluno.";";
         $select = mysqli_query($connect,$query_select);
         $array = mysqli_fetch_array($select);
-        $logarray = $array['login'];
-     
-        if($login == "" || $login == null || $par_senha==""|| $par_senha== null){
-            echo"<script language='javascript' type='text/javascript'>alert('Os campos devem ser preenchidos');window.location.href='Cadastro.php';</script>";
-        }else{
-            if($logarray == $login){ 
-                echo"<script language='javascript' type='text/javascript'>alert('Esse login já existe');window.location.href='Cadastro.php';</script>";
-                die(); 
-                return 0;
+        if(isset($array)){ 
+            $query = "UPDATE notas SET ID_Atividade=".$id_atividade.", ID_Aluno=".$id_aluno.", Valor=".$nota." WHERE ID_Atividade=".$id_atividade." AND ID_Aluno=".$id_aluno.";";
+            $update = mysqli_query($connect,$query);                 
+            if($update){
+                echo"<script language='javascript' type='text/javascript'>alert('Nota alterada com sucesso!');window.location.href='Notas.php'</script>";
+                return 1;
             }else{
-                $query = "INSERT INTO usuarios (login,senha,professor) VALUES ('".$login."','".$senha."',".$tipo.");";
-                $insert = mysqli_query($connect,$query);                 
-                if($insert){
-                    echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='Login.php'</script>";
-                    return 1;
-                }else{
-                    echo"<script language='javascript' type='text/javascript'>alert('Não foi possível cadastrar esse usuário');window.location.href='Cadastro.php'</script>";
-                    return 0;
-                }
+                echo"<script language='javascript' type='text/javascript'>alert('Não foi possível alterar essa nota.');window.location.href='Notas.php'</script>";
+                return 0;
+            }
+            die(); 
+            return 0;
+        }else{
+            $query = "INSERT INTO notas (ID_Atividade,ID_Aluno,Valor) VALUES (".$id_atividade.",".$id_aluno.",".$nota.");";
+            $insert = mysqli_query($connect,$query);                 
+            if($insert){
+                echo"<script language='javascript' type='text/javascript'>alert('Nota inserida com sucesso!');window.location.href='Notas.php'</script>";
+                return 1;
+            }else{
+                echo"<script language='javascript' type='text/javascript'>alert('Não foi possível inserir essa nota');window.location.href='Notas.php'</script>";
+                return 0;
             }
         }
     }

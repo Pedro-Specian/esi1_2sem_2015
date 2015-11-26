@@ -55,7 +55,8 @@
 										$nomeTipo=$tipo[($row_ativ[5])];
 										echo "<td>".$row_ativ[2]." (".$nomeTipo.")</td>";
 									}
-									echo "</td>";
+									echo "<td>Média Final</td>";
+									echo "</tr>";
 									$query_select_matriculas = "SELECT * FROM matricula WHERE ID_Turma=".$row_turma[0].";";
 									$select_matriculas = mysqli_query($connect,$query_select_matriculas);
 									while ($row_matriculas = mysqli_fetch_row($select_matriculas)) {
@@ -70,18 +71,55 @@
 											$select_ativ = mysqli_query($connect,$query_select_ativ);
 											//echo mysqli_error($connect);								
 											while($row_ativ=mysqli_fetch_row($select_ativ)){
-												$query_nota = "SELECT Valor FROM notas WHERE ID_Atividade=".$row_ativ[0]." AND ID_Aluno=".$row_alunos[0].";";
+												$query_nota = "SELECT Valor FROM notas WHERE ID_Atividade=".$row_ativ[1]." AND ID_Aluno=".$row_alunos[0].";";
 												$select_nota = mysqli_query($connect,$query_nota);
 												$nota = mysqli_fetch_array($select_nota);
 												echo "<td>";
 												echo "<form action='AlteraNotaSup.php' method='POST'>";
-												echo "<input class='campo-nota' name='nota' type='number' min='0' max='10' value='".($nota['valor']+0)."' step='0.1'/>";
+												echo "<input class='campo-nota' name='nota' type='number' min='0' max='10' value='".($nota[0]+0.0)."' step='0.1'/>";
 												echo "<input type='hidden' name='id_atividade' value='".$row_ativ[1]."'>";
 												echo "<input type='hidden' name='id_aluno' value='".$row_alunos[0]."'>";
 												echo "<input type='submit' name='submit' class='submit' value='Mudar' />";
 												echo "</form>";
 												echo "</td>";
 											}
+											echo "<td>";
+											$mediaFinal=0;
+											$pesoProvas=4;
+											$pesoTrabalhos=1;
+											$cont_provas=0;
+											$cont_trabalhos=0;
+											$array_provas=array();
+											$array_trabalhos=array();				
+											$query_med = "SELECT * FROM notas WHERE ID_Aluno=".$row_alunos[0].";";
+											$select_med = mysqli_query($connect,$query_med);										
+											while($row_med=mysqli_fetch_row($select_med)){
+												$query_a = "SELECT * FROM atividades WHERE ID_Atividade=".$row_med[2].";";
+												$select_a = mysqli_query($connect,$query_a);
+												$n = mysqli_fetch_array($select_a);
+												//var_dump($n);
+												if($n[5]==1){
+													$array_provas[$cont_provas]=$row_med[3];
+													$cont_provas++;
+												}else{
+													$array_trabalhos[$cont_trabalhos]=$row_med[3];
+													$cont_trabalhos++;
+												}
+											}
+											$valorProvas=0;
+											for($i=0;$i<$cont_provas;$i++){
+												$valorProvas+=$array_provas[$i];
+											}
+											$valorTrabalhos=0;
+											for($i=0;$i<$cont_trabalhos;$i++){
+												$valorTrabalhos+=$array_trabalhos[$i];
+											}
+											$mediaProvas=$valorProvas/10;
+											$mediaTrabalhos=$valorTrabalhos/10;
+											$mediaFinal=($pesoProvas*$mediaProvas)+($pesoTrabalhos*$mediaTrabalhos);
+											//$mediaFinal=$valorProvas+$valorTrabalhos;
+											echo $mediaFinal;
+											echo "</td>";
 											echo "</tr>";
 										}
 									}
