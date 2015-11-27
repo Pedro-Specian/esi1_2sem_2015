@@ -33,17 +33,7 @@
 				<br>
 				O que falta fazer:
 				<ul>
-					<li>Adicionar funcionalidades às telas;</li>
-					<li>Completar as telas de frequência e notas, implementando:
-						<ul>
-							<li>Atribuição dinâmica de frequências aos alunos nas suas respectivas telas;</li>
-							<li>Cálculo dinâmico de presença de cada aluno;</li>
-							<li>Página com quadro de avaliação de cada aluno (Aprovado, Reprovado etc.);</li>
-							<li>Etc.</li>
-						</ul>
-					</li>
-					<li>Conectar o sistema com o banco de dados citado na lista acima;</li>
-					<li>Permitir que os professores atribuam notas e presença somente a alunos de turmas em que ele dá aula;</li>
+					<li>Não conseguimos conectar o sistema com o banco de dados citado na lista acima. Em função disso, estamos usando um banco local.</li>
 				</ul>
 			</div>
 		</section>

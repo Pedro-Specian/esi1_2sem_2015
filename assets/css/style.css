@@ -116,5 +116,11 @@ a:hover{
 }
 .campo-nota{
 	display:block;
-	width:100%;
+	width:50px;
+}
+.presente{
+	.background-color:teal;
+}
+.ausente{
+	.background-color:red;
 }

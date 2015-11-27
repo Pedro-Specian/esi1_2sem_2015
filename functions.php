@@ -198,4 +198,85 @@
             }
         }
     }
+    function cadastrarFrequencia($alun, $turm, $dat, $parNumAlunos){
+        $alunos = $alun;
+        $id_turma = $turm;
+        //$data = date_format($dat,'Y-m-d');
+        $data = date("Y-m-d", strtotime($dat));
+        $numAlunos=$parNumAlunos;
+        //var_dump($alunos);
+        //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
+        $connect = mysqli_connect('localhost','root','','esi1');
+        $db = mysqli_select_db($connect,'esi1');
+        //pega os alunos
+        $query_select_matriculas = "SELECT * FROM matricula WHERE ID_Turma=".$id_turma.";";
+        $select_matriculas = mysqli_query($connect,$query_select_matriculas);
+        $cont=0;
+        while ($row_matriculas = mysqli_fetch_row($select_matriculas)) {
+            $query_select_alunos = "SELECT * FROM alunos WHERE ID_Aluno=".$row_matriculas[1].";";
+            $select_alunos = mysqli_query($connect,$query_select_alunos);
+
+            while($row_alunos = mysqli_fetch_row($select_alunos)){
+                $alunosID[$row_alunos[0]]=0;
+                $cont++;
+            }
+        }
+        foreach($alunos as $aluno){
+            if($aluno!="NO"){
+                $alunosID[$aluno]=1;
+            }
+        }
+        reset($alunosID);
+        //var_dump($alunosID);
+        //var_dump($alunos);
+        //reset($alunosID);
+        //cadastra as frequencias
+        $query_select = "SELECT * FROM frequencia WHERE ID_Turma = ".$id_turma." AND data='".$data."';";
+        $select = mysqli_query($connect,$query_select);
+        if(mysqli_num_rows($select)>0){
+            //atualiza
+            
+            for($i=0;$i<count($alunosID); $i++){                
+                //var_dump($i);
+                //echo "->";
+                //var_dump(key($alunosID));
+                if($alunosID[key($alunosID)]==1){
+                    $val=1;
+                }else{
+                    $val=0;
+                }
+                $query = "UPDATE frequencia SET presente=".$val." WHERE ID_Aluno=".key($alunosID)." AND ID_Turma=".$id_turma." AND data='".$data."';";
+                $update = mysqli_query($connect,$query);
+                if(!$update){
+                    echo"<script language='javascript' type='text/javascript'>alert('Não foi possível alterar as frequências.');window.location.href='Frequencia.php'</script>";
+                    return 0;
+                }
+                next($alunosID);
+            }
+            echo"<script language='javascript' type='text/javascript'>alert('Frequências alteradas com sucesso!');window.location.href='Frequencia.php'</script>";
+            return 1;
+        }else{
+            //insere
+
+            for($i=0;$i<count($alunosID); $i++){
+                //var_dump(key($alunosID));
+                
+                if($alunosID[key($alunosID)]==1){
+                    $val=1;
+                }else{
+                    $val=0;
+                }
+                $query = "INSERT INTO frequencia (ID_Aluno, ID_Turma, presente, data) VALUES (".key($alunosID).", ".$id_turma.", ".$val.", '".$data."');";
+                $insert = mysqli_query($connect,$query);
+
+                if(!$insert){
+                    echo"<script language='javascript' type='text/javascript'>alert('Não foi possível inserir as frequências.');window.location.href='Frequencia.php'</script>";
+                    return 0;
+                }
+                next($alunosID);
+            }
+            echo"<script language='javascript' type='text/javascript'>alert('Frequências inseridas com sucesso!');window.location.href='Frequencia.php'</script>";
+            return 1;
+        }
+    }
 ?>
