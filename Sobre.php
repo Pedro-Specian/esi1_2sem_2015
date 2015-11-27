@@ -26,7 +26,7 @@
 					<li>Criamos um banco de dados para o sistema;</li>
 					<li>Começamos a montar a interface gráfica do sistema;</li>
 					<li>Criamos um sistema de login, cujo conteúdo difere entre usuários que são pais de alunos (responsáveis) e professores;</li>
-					<li>Criamos os sistemas de avisos e notas</li>
+					<li>Criamos os sistemas de avisos, notas e frequência;</li>
 					<li>Tornamos o sistema responsivo;</li>
 					<li>Entre outras coisas citadas na apresentação do dia 15/10/2015</li>
 				</ul>

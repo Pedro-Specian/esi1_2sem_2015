@@ -15,7 +15,7 @@
 					<form method="POST" action="CadastroSup.php" class="formulario">
 						<label>Login</label>
 						<br>
-						<input type="text" name="login" id="login">
+						<input type="text" name="login" id="login" value="">
 						<br>
 						<label>Tipo de Usuário</label>
 						<br>
@@ -25,7 +25,7 @@
 						<br>
 						<label>Senha</label>
 						<br>
-						<input type="password" name="senha" id="senha">
+						<input type="password" name="senha" id="senha" value="">
 						<br>
 						<input type="submit" value="Cadastrar" id="cadastrar" class="submit" name="cadastrar">
 					</form>

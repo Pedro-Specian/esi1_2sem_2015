@@ -1,5 +1,5 @@
 <?php
-    function efetuaLogin($par_login,$par_senha,$par_submit){
+    function efetuaLogin($par_login,$par_senha,$par_submit, $testando){
         $usuario = $par_login;
         $entrar = $par_submit;
         $senha = md5($par_senha);
@@ -9,22 +9,27 @@
             $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE login = '".$usuario."' AND senha = '".$senha."'") or die("erro ao selecionar");
             if (mysqli_num_rows($verifica)<=0){
                 echo "<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='Login.php';</script>";
-                die();
+                //die();
                 return 0;
-            }else{                           
-                session_start();
-                while ($row = mysqli_fetch_row($verifica)) {
-                    $_SESSION['id'] = $row[0];
-                    $_SESSION['tipo'] = $row[4];
+            }else{    
+                if($testando==0){
+                    session_start();
+                    while ($row = mysqli_fetch_row($verifica)) {
+                        $_SESSION['id'] = $row[0];
+                        $_SESSION['tipo'] = $row[4];
+                    }
+                    $_SESSION['usuario'] = $usuario;
+                    //$_SESSION['id'] = mysqli_fetch_row($verifica)[0];
+                    //$_SESSION['tipo'] = mysqli_fetch_row($verifica)[3];
+                    //echo $_SESSION['usuario'];
+                    //echo $_SESSION['tipo'];
+                    //echo $_SESSION['id'];
+                    header("Location:index.php");
+                    return 1;
+                }else{
+                    return 1;
                 }
-                $_SESSION['usuario'] = $usuario;
-                //$_SESSION['id'] = mysqli_fetch_row($verifica)[0];
-                //$_SESSION['tipo'] = mysqli_fetch_row($verifica)[3];
-                //echo $_SESSION['usuario'];
-                //echo $_SESSION['tipo'];
-                //echo $_SESSION['id'];
-                header("Location:index.php");
-                return 1;            
+                            
             }
         }
     }
@@ -68,11 +73,11 @@
         $titulo=$par_titulo;
         $mensagem=$par_mensagem;
         $idprofessor=$par_id;
-
         $connect = mysqli_connect('localhost','root','','esi1');
         $db = mysqli_select_db($connect,'esi1');
-        if($titulo == "" || $titulo == null || $mensagem=="" || $mensagem== null || $dest=="" || $dest== null ){
+        if($titulo == "" || $titulo == null || $mensagem=="" || $mensagem== null || $dest=="" || $dest== null || $idprofessor=="" || $idprofessor==null){
             echo"<script language='javascript' type='text/javascript'>alert('Os campos devem ser preenchidos');window.location.href='Aviso.php';</script>";
+            return 0;
         }else{
             $date = date('Y-m-d H:i:s');
             $query = "INSERT INTO avisos (ID_Professor,titulo,data,texto,escopo) VALUES (".$idprofessor.",'".$titulo."','".$date."','".$mensagem."','".$dest."');";
@@ -199,12 +204,15 @@
         }
     }
     function cadastrarFrequencia($alun, $turm, $dat, $parNumAlunos){
+        if($dat==""){
+            return 0;
+        }
         $alunos = $alun;
         $id_turma = $turm;
         //$data = date_format($dat,'Y-m-d');
         $data = date("Y-m-d", strtotime($dat));
         $numAlunos=$parNumAlunos;
-        //var_dump($alunos);
+        var_dump($alunos);
         //$connect = mysqli_connect('newschool.cxfs3swb2lnk.us-west-2.rds.amazonaws.com:1433','EngSoft','Soft1234','newschool');
         $connect = mysqli_connect('localhost','root','','esi1');
         $db = mysqli_select_db($connect,'esi1');

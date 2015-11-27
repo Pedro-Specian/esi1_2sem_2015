@@ -4,6 +4,6 @@
 <?php
     include_once 'functions.php';
     
-    efetuaLogin($_POST['usuario'], $_POST['senha'], $_POST['submit']);
+    efetuaLogin($_POST['usuario'], $_POST['senha'], $_POST['submit'], 0);
 ?>
 </html>
